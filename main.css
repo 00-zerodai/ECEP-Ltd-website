@@ -260,3 +260,45 @@ footer {
   transition: background 0.3s, color 0.3s;
 
 }
+/* Split View Toggle Button Styling */
+.fold-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fold-toggle-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Split-Screen Active State (Triggers dual-column layout on foldables / wide displays) */
+body.split-view-active {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  width: 100vw !important;
+  min-height: 100vh !important;
+  gap: 16px;
+  overflow-x: hidden;
+}
+
+/* Using CSS Viewport Segments API for native foldable hardware splitting */
+@media (horizontal-viewport-segments: 2) {
+  body.split-view-active {
+    grid-template-columns: env(viewport-segment-width 0 0) env(viewport-segment-width 1 0) !important;
+  }
+}
