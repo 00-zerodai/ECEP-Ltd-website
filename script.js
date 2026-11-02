@@ -48,38 +48,5 @@ if (toggleBtn) {
         }
     });
 }
-document.addEventListener("DOMContentLoaded", () => {
-  const foldBtn = document.getElementById("fold-split-btn");
 
-  // Function to toggle split-screen mode
-  function toggleSplitScreen() {
-    document.body.classList.toggle("split-view-active");
-    
-    // Update button text state
-    const isSplit = document.body.classList.contains("split-view-active");
-    if (foldBtn) {
-      foldBtn.querySelector(".btn-text").textContent = isSplit ? "Full Screen" : "Split View";
-    }
-  }
-
-  // Auto-detect foldable screen / dual-screen posture on load or resize
-  function checkFoldableDevice() {
-    const isDualScreen = window.matchMedia("(horizontal-viewport-segments: 2)").matches;
-    const isFoldableWidth = window.innerWidth >= 540 && window.innerWidth <= 900 && window.innerHeight >= 600;
-
-    if (isDualScreen || isFoldableWidth) {
-      document.body.classList.add("split-view-active");
-      if (foldBtn) foldBtn.querySelector(".btn-text").textContent = "Full Screen";
-    }
-  }
-
-  // Bind click event to button
-  if (foldBtn) {
-    foldBtn.addEventListener("click", toggleSplitScreen);
-  }
-
-  // Run auto-detection
-  checkFoldableDevice();
-  window.addEventListener("resize", checkFoldableDevice);
-});
 console.log("Global ECEP script loaded.");
